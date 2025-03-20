@@ -7,10 +7,14 @@ const app = express();
 const port = process.env.PORT || 3000;
 const mongoHost = process.env.MONGO_HOST || 'localhost';
 
-mongoose.connect(`mongodb://${mongoHost}:27017/movieDB`, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
+const mongoose = require('mongoose');
+const mongoHost = process.env.MONGO_HOST || 'localhost';
+mongoose.connect(`mongodb://${mongoHost}:27017/movieDB`, { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true 
 })
+    .then(() => console.log('Đã kết nối đến MongoDB'))
+    .catch(err => console.error('Lỗi kết nối MongoDB:', err));
 .then(() => console.log('Đã kết nối đến MongoDB'))
 .catch(err => console.error('Lỗi kết nối MongoDB:', err));
 
