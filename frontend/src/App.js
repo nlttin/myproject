@@ -22,3 +22,9 @@ function App() {
 }
 
 export default App;
+const express = require('express');
+const path = require('path');
+const app = express();
+
+// Phục vụ các tệp tĩnh từ /app/media
+app.use('/media', express.static(path.join(__dirname, 'media')));

@@ -12,6 +12,8 @@ services:
       - movie-network
     environment:
       - MONGO_HOST=mongo
+    volumes:
+      - /home/filmmoi/media:/app/media
 networks:
   movie-network:
     driver: bridge

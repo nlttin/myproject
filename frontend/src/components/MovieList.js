@@ -11,17 +11,6 @@ function MovieList() {
             .catch(error => console.error('Lỗi:', error));
     }, []);
 
-    const getYouTubeId = (url) => {
-        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-        const match = url.match(regExp);
-        return (match && match[2].length === 11) ? match[2] : null;
-    };
-
-    const getThumbnailUrl = (videoUrl) => {
-        const videoId = getYouTubeId(videoUrl);
-        return videoId ? `https://img.youtube.com/vi/${videoId}/0.jpg` : null;
-    };
-
     return (
         <Container>
             <h1 className="mt-4">Danh sách phim</h1>
@@ -29,7 +18,7 @@ function MovieList() {
                 {movies.map(movie => (
                     <Col md={4} key={movie._id} className="mb-4">
                         <Card>
-                            <Card.Img variant="top" src={getThumbnailUrl(movie.videoUrl)} alt={movie.title} />
+                            <Card.Img variant="top" src={`/media/${movie._id}.jpg`} alt={movie.title} />
                             <Card.Body>
                                 <Card.Title>{movie.title}</Card.Title>
                                 <Card.Text>{movie.description}</Card.Text>

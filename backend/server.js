@@ -2,7 +2,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const moviesRouter = require('./routes/movies');
+const express = require('express');
+const app = express();
 
+// Phục vụ các tệp tĩnh từ /app/media
+
+// ... (các dòng khác)
+
+// Phục vụ tệp static từ /app/media
+app.use('/media', express.static(path.join(__dirname, '../media')));
+
+// ... (các dòng khác)
 const app = express();
 const port = process.env.PORT || 3000;
 const mongoHost = process.env.MONGO_HOST || 'localhost';
