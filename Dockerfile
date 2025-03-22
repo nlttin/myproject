@@ -12,7 +12,7 @@ WORKDIR /app
 COPY frontend ./frontend
 WORKDIR /app/frontend
 RUN rm -rf node_modules package-lock.json && npm install
-RUN npm install --legacy-peer-deps
+RUN npm install --force
 RUN npm run build
 
 # Set working directory for backend
