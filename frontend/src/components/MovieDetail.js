@@ -18,10 +18,8 @@ function MovieDetail() {
         <div>
             <h1>{movie.title}</h1>
             <p>{movie.description}</p>
-            {/* Video nhúng từ MongoDB (ví dụ: YouTube) */}
             <h3>Video chính</h3>
             <iframe width="560" height="315" src={movie.videoUrl} title={movie.title} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-            {/* Video local từ /media (ví dụ: trailer) */}
             <h3>Trailer</h3>
             <video width="640" height="360" controls>
                 <source src={`/media/${movie._id}.mp4`} type="video/mp4" />
