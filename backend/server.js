@@ -12,20 +12,25 @@ mongoose.connect(`mongodb://${mongoHost}:27017/movieDB`, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-    .then(() => console.log('Đã kết nối đến MongoDB'))
-    .catch(err => console.error('Lỗi kết nối MongoDB:', err));
+.then(() => console.log('Đã kết nối đến MongoDB'))
+.catch(err => console.error('Lỗi kết nối MongoDB:', err));
 
 // Middleware
 app.use(express.json());
-app.use('/api/movies', moviesRouter);
 
-// Phục vụ tệp static từ /app/media
+// Định tuyến API
+app.use('/api/movies', moviesRouter);
+app.use('/api', require('./routes/api')); // Đảm bảo rằng bạn đã định nghĩa tệp này
+
+// Phục vụ tệp tĩnh từ thư mục media
 app.use('/media', express.static(path.join(__dirname, '../media')));
 
-// Phục vụ tệp build của frontend
+// Phục vụ tệp tĩnh từ thư mục frontend/build
 app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+// Phục vụ index.html cho tất cả các yêu cầu không khớp với route API
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
+    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
 });
 
 // Khởi động server
