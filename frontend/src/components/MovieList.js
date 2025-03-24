@@ -17,11 +17,11 @@ function MovieList() {
                 {movies.map(movie => (
                     <Col md={4} key={movie._id} className="mb-4">
                         <Card>
-                            <Card.Img variant="top" src={ `/media/${movie._id}.jpg` } alt={movie.title} />
+                            <Card.Img variant="top" src={`/media/${movie._id}.jpg`} alt={movie.title} />
                             <CardBody>
                                 <CardTitle>{movie.title}</CardTitle>
                                 <CardText>{movie.description}</CardText>
-                                <a href={ `/movies/${movie._id}` } className="btn btn-primary">Xem</a>
+                                <a href={`/movies/${movie._id}`} className="btn btn-primary">Xem</a>
                             </CardBody>
                         </Card>
                     </Col>
